@@ -7,10 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="27,264,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="295,259,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="224" Margin="27,10,0,0" VerticalAlignment="Top" Width="192"/>
-        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="224" Margin="270,10,0,0" VerticalAlignment="Top" Width="212"/>
+        <Grid Margin="0,0,-0.333,9.667">
+            <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="519">
+                <TabItem Header="Животные" HorizontalAlignment="Left" Width="73" Margin="0,0,-19,0">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="91*"/>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="413*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="263" Margin="10,10,0,0" VerticalAlignment="Top" Width="381" Grid.ColumnSpan="4"/>
+                        <Button x:Name="button" Content="Найти" HorizontalAlignment="Left" Margin="313,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Click="button_Click"/>
+                        <Button x:Name="button1" Content="Изменить" HorizontalAlignment="Left" Margin="313,55,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20"/>
+                        <Button x:Name="button2" Content="Создать" HorizontalAlignment="Left" Margin="313,102,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="21"/>
+                        <Button x:Name="button3" Content="Апдейт" HorizontalAlignment="Left" Margin="313,198,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Click="button3_Click"/>
+                        <Button x:Name="button9" Content="Удалить" HorizontalAlignment="Left" Margin="313,149,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="21"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Сотрудники" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="86" Margin="-0.333,0,-31.667,0" RenderTransformOrigin="0.34,0.583">
+                    <Grid Background="#FFE5E5E5" Margin="0,0,-0.333,-0.333">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="41*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="223*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="395*"/>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition Width="87*"/>
+                            <ColumnDefinition Width="31*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="263" Margin="10,10,0,0" VerticalAlignment="Top" Width="364" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+                        <Button x:Name="button4" Content="Найти" HorizontalAlignment="Left" Margin="1.667,21,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="21" Grid.RowSpan="2"/>
+                        <Button x:Name="button5" Content="Изменить" HorizontalAlignment="Left" Margin="1.667,1,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Grid.Row="2"/>
+                        <Button x:Name="button6" Content="Создать" HorizontalAlignment="Left" Margin="1.667,42,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Grid.Row="2"/>
+                        <Button x:Name="button7" Content="Удалить" HorizontalAlignment="Left" Margin="1.667,80,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Grid.Row="2"/>
+                        <Button x:Name="button8" Content="Апдейт" HorizontalAlignment="Left" Margin="1.333,128,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Grid.Row="2"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+        </Grid>
 
     </Grid>
 </Window>
