@@ -11,6 +11,7 @@ namespace zoooo
         private string _surname;
         private string _workinghours;
         private string _id;
+        private string _animal;
 
         
 
@@ -66,12 +67,26 @@ namespace zoooo
             }
         }
 
-        public Employee(string name, string surname, string workinghours, string id)
+        public string Animal
+        {
+            get
+            {
+                return _animal;
+            }
+
+            set
+            {
+                _animal = value;
+            }
+        }
+
+        public Employee(string name, string surname, string workinghours, string id, string animal)
         {
             _name = name;
             _surname = surname;
             _workinghours = workinghours;
             _id = id;
+            _animal = animal;
         }
     }
 }

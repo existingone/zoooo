@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace zoooo
 {
@@ -20,6 +21,10 @@ namespace zoooo
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Animal> animals = new List<Animal>();
+        List<Employee> employees = new List<Employee>();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +45,31 @@ namespace zoooo
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void listBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void tabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void tabControl_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
         {
 
         }
