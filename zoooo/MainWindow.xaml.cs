@@ -21,17 +21,20 @@ namespace zoooo
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Animal> animals = new List<Animal>();
+        public List<Animal> animals = new List<Animal>();
         List<Employee> employees = new List<Employee>();
 
 
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+
                     }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,6 +73,23 @@ namespace zoooo
         }
 
         private void button8_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+
+        private void add_animal_Click_(object sender, RoutedEventArgs e)
+        {
+            Animal temp = new Animal(forid1.Text, textBox8.Text, textBox9.Text, forsection1.Text, forfoodset1.Text, forspecies1.Text);
+            animals.Add(temp);
+            listBox.Items.Add(animals[animals.Count-1].Species);
+            //MessageBox.Show(animals[0].Species);
+            //дописать стримрайтер и лейбл, который будет говорить, что объект добавлен
+  
+            
+        }
+
+        private void forspecies1_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
