@@ -26,15 +26,15 @@
                             <ColumnDefinition Width="37*"/>
                             <ColumnDefinition Width="376*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="245" Margin="9,10,0,0" VerticalAlignment="Top" Width="381" Grid.ColumnSpan="5" SelectionChanged="listBox_SelectionChanged_1"/>
-                        <Button x:Name="find_animal" Content="Найти" HorizontalAlignment="Left" Margin="272.322,49,0,0" VerticalAlignment="Top" Width="80" Grid.Column="4" Height="20" Click="button_Click"/>
+                        <ListBox x:Name="listBoxforanimals" HorizontalAlignment="Left" Height="245" Margin="9,10,0,0" VerticalAlignment="Top" Width="381" Grid.ColumnSpan="5" SelectionChanged="listBox_SelectionChanged_1" DisplayMemberPath="postinganimal"/>
+                        <Button x:Name="find_animal" Content="Найти" HorizontalAlignment="Left" Margin="272.322,49,0,0" VerticalAlignment="Top" Width="80" Grid.Column="4" Height="20" Click="find_animal_Click"/>
                         <Button x:Name="update_animal" Content="Обновить" HorizontalAlignment="Left" Margin="273.322,226,0,0" VerticalAlignment="Top" Width="75" Grid.Column="4" Height="20" Click="button3_Click"/>
-                        <Button x:Name="delete_animal" Content="Удалить" HorizontalAlignment="Left" Margin="273.322,91,0,0" VerticalAlignment="Top" Width="79" Grid.Column="4" Height="21"/>
-                        <TextBox x:Name="textBox" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="268.322,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="84"/>
+                        <Button x:Name="delete_animal" Content="Удалить" HorizontalAlignment="Left" Margin="273.322,91,0,0" VerticalAlignment="Top" Width="79" Grid.Column="4" Height="21" Click="delete_animal_Click"/>
+                        <TextBox x:Name="write_animal_id" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="274.322,10,0,0" TextWrapping="Wrap" Text="Введите id" VerticalAlignment="Top" Width="77" GotFocus="textBoxFocus" LostFocus="textBoxLostFocus" />
                     </Grid>
                 </TabItem>
                 <TabItem Header="Сотрудники" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="86" Margin="-0.333,0,-31.667,0" RenderTransformOrigin="0.34,0.583">
-                    <Grid Background="#FFE5E5E5" Margin="25,13,-25.333,-13.667">
+                    <Grid Background="#FFE5E5E5" Margin="-1,-2,0.667,1.333">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="41*"/>
                             <RowDefinition Height="19*"/>
@@ -46,9 +46,9 @@
                             <ColumnDefinition Width="86*"/>
                             <ColumnDefinition Width="31*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="248" Margin="10,10,0,0" VerticalAlignment="Top" Width="364" Grid.RowSpan="3"/>
+                        <ListBox x:Name="listBoxforemployees" HorizontalAlignment="Left" Height="248" Margin="10,10,0,0" VerticalAlignment="Top" Width="364" Grid.RowSpan="3" DisplayMemberPath="postingemployee"/>
                         <Button x:Name="find_employee" Content="Найти" HorizontalAlignment="Left" Margin="1.333,0.226,0,0" VerticalAlignment="Top" Width="86" Grid.Column="2" Height="21" Grid.Row="2" Grid.ColumnSpan="2"/>
-                        <Button x:Name="delete_employee" Content="Удалить" HorizontalAlignment="Left" Margin="394,54.226,0,0" VerticalAlignment="Top" Width="88" Height="20" Grid.Row="2" Grid.ColumnSpan="4"/>
+                        <Button x:Name="delete_employee" Content="Удалить" HorizontalAlignment="Left" Margin="394,54.226,0,0" VerticalAlignment="Top" Width="88" Height="20" Grid.Row="2" Grid.ColumnSpan="4" Click="delete_employee_Click"/>
                         <Button x:Name="update_employee" Content="Обновить" HorizontalAlignment="Left" Margin="1.333,179.226,0,0" VerticalAlignment="Top" Width="87" Grid.Column="2" Height="20" Grid.Row="2" Click="button8_Click" Grid.ColumnSpan="2"/>
                         <TextBox x:Name="textBox1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="1.333,15,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="85"/>
                     </Grid>
@@ -69,17 +69,19 @@
                             <TextBox x:Name="forid1" HorizontalAlignment="Left" Height="23" Margin="3,67.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите айди" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
                             <TextBox x:Name="forfoodset1" HorizontalAlignment="Left" Height="23" Margin="118,34.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите набор пищи" VerticalAlignment="Top" Width="131" Grid.Column="1"/>
                             <TextBox x:Name="forsection1" HorizontalAlignment="Left" Height="23" Margin="120,65.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите секцию" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
-                            <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="267,35.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="textBox9" HorizontalAlignment="Left" Height="23" Margin="268,64.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                            <TextBox x:Name="fortimeforfeeding1" HorizontalAlignment="Left" Height="23" Margin="267,35.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                            <TextBox x:Name="forworker1" HorizontalAlignment="Left" Height="23" Margin="268,64.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                             <Button x:Name="add_animal" Content="Обновить" HorizontalAlignment="Left" Margin="407,35.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="51" Click="add_animal_Click_" Grid.Column="1"/>
                             <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="7,109.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"><Run Text="Для сотрудни"/><Run Text="ка"/></TextBlock>
-                            <TextBox x:Name="textBox10" HorizontalAlignment="Left" Height="23" Margin="3,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="textBox11" HorizontalAlignment="Left" Height="23" Margin="5,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="textBox12" HorizontalAlignment="Left" Height="23" Margin="122,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="textBox13" HorizontalAlignment="Left" Height="23" Margin="267,135.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="textBox14" HorizontalAlignment="Left" Height="23" Margin="120,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <Button x:Name="add_employee" Content="Обновить" HorizontalAlignment="Left" Margin="407,136.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59" Grid.Column="1"/>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="-1,205.667,0,-12" Grid.Row="1" VerticalAlignment="Top" Width="513" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="forname2" HorizontalAlignment="Left" Height="23" Margin="3,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="forsurname2" HorizontalAlignment="Left" Height="23" Margin="5,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="forid" HorizontalAlignment="Left" Height="23" Margin="122,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                            <TextBox x:Name="foranimal2" HorizontalAlignment="Left" Height="23" Margin="267,135.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                            <TextBox x:Name="forworkinghours2" HorizontalAlignment="Left" Height="23" Margin="120,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                            <Button x:Name="add_employee" Content="Обновить" HorizontalAlignment="Left" Margin="411.333,134.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59" Grid.Column="1" Click="add_employee_Click"/>
+                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="-1,205.667,0,-12" Grid.Row="1" VerticalAlignment="Top" Width="513" Grid.ColumnSpan="2">
+                                <Label x:Name="labelforadding" Content="Label"/>
+                            </Border>
                         </Grid>
                     </Grid>
                 </TabItem>

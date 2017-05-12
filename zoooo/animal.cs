@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace zoooo
 {
     public class Animal
     {
         private string _id;
-        private string _time4feeding;
+        private string _timeforfeeding;
         private string _worker;
         private string _section;
         private string _foodset;
@@ -29,16 +30,16 @@ namespace zoooo
             }
         }
 
-        public string Time4feeding
+        public string Timeforfeeding
         {
             get
             {
-                return _time4feeding;
+                return _timeforfeeding;
             }
 
             set
             {
-                _time4feeding = value;
+                _timeforfeeding = value;
             }
         }
 
@@ -94,14 +95,27 @@ namespace zoooo
             }
         }
 
-        public Animal( string id, string time4feeding, string worker, string section, string foodset, string species)
+        public Animal( string id, string timeforfeeding, string worker, string section, string foodset, string species)
         {
             _id = id;
-            _time4feeding = time4feeding;
+            _timeforfeeding = timeforfeeding;
             _worker = worker;
             _section = section;
             _foodset = foodset;
             _species = species;
         }
+
+        public Animal()
+        { }
+
+        public string postinganimal
+        {
+            get
+            {
+                return $"{_id} - {_timeforfeeding} - {_worker} - {_section} - {_foodset} - {_species}";
+            }
+        }
+
+
     }
 }

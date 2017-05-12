@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace zoooo
 {
@@ -88,5 +89,19 @@ namespace zoooo
             _id = id;
             _animal = animal;
         }
+       
+        public Employee()
+        { }
+
+        public string postingemployee
+        {
+            get
+            {
+                return $"{_name} - {_surname} - {_workinghours} - {_id} - {_animal}";
+            }
+        }
+
+
+
     }
 }
