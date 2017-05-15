@@ -55,33 +55,44 @@
                 </TabItem>
                 <TabItem Header="Добавить" Margin="-4.333,0,4.333,0">
                     <Grid Background="#FFE5E5E5">
-                        <Grid Background="#FFE5E5E5" Margin="1,-2,-0.333,2.333">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29*"/>
+                            <ColumnDefinition Width="28*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Background="#FFE5E5E5" Margin="1,-2,-0.333,2.333" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="23*"/>
-                                <ColumnDefinition Width="489*"/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="241.333"/>
                             </Grid.RowDefinitions>
-                            <TextBox x:Name="forspecies1" HorizontalAlignment="Left" Height="23" Margin="3,35.667,0,0" TextWrapping="Wrap" Text="введите вид" VerticalAlignment="Top" Width="120" Grid.Row="1" TextChanged="forspecies1_TextChanged" Grid.ColumnSpan="2"/>
-                            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="8,6.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Для животного" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="forid1" HorizontalAlignment="Left" Height="23" Margin="3,67.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите айди" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="forfoodset1" HorizontalAlignment="Left" Height="23" Margin="118,34.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите набор пищи" VerticalAlignment="Top" Width="131" Grid.Column="1"/>
-                            <TextBox x:Name="forsection1" HorizontalAlignment="Left" Height="23" Margin="120,65.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите секцию" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
-                            <TextBox x:Name="fortimeforfeeding1" HorizontalAlignment="Left" Height="23" Margin="267,35.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="forworker1" HorizontalAlignment="Left" Height="23" Margin="268,64.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <Button x:Name="add_animal" Content="Обновить" HorizontalAlignment="Left" Margin="407,35.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="51" Click="add_animal_Click_" Grid.Column="1"/>
-                            <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="7,109.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"><Run Text="Для сотрудни"/><Run Text="ка"/></TextBlock>
-                            <TextBox x:Name="forname2" HorizontalAlignment="Left" Height="23" Margin="3,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="forsurname2" HorizontalAlignment="Left" Height="23" Margin="5,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="forid" HorizontalAlignment="Left" Height="23" Margin="122,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="foranimal2" HorizontalAlignment="Left" Height="23" Margin="267,135.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <TextBox x:Name="forworkinghours2" HorizontalAlignment="Left" Height="23" Margin="120,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                            <Button x:Name="add_employee" Content="Обновить" HorizontalAlignment="Left" Margin="411.333,134.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59" Grid.Column="1" Click="add_employee_Click"/>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="-1,205.667,0,-12" Grid.Row="1" VerticalAlignment="Top" Width="513" Grid.ColumnSpan="2">
-                                <Label x:Name="labelforadding" Content="Label"/>
-                            </Border>
+                            <TextBox x:Name="adding_species1" HorizontalAlignment="Left" Height="23" Margin="8,100.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1" TextChanged="forspecies1_TextChanged"/>
+                            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="8,6.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Для животного" VerticalAlignment="Top"/>
+                            <TextBox x:Name="adding_id1" HorizontalAlignment="Left" Height="23" Margin="5,49.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_foodset1" HorizontalAlignment="Left" Height="23" Margin="144,49.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"/>
+                            <TextBox x:Name="adding_section1" HorizontalAlignment="Left" Height="23" Margin="150,101.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
+                            <TextBox x:Name="adding_timeforfeeding1" HorizontalAlignment="Left" Height="23" Margin="295,50.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_worker1" HorizontalAlignment="Left" Height="23" Margin="298,102.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <Button x:Name="add_animal" Content="Обновить" HorizontalAlignment="Left" Margin="428,56.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="51" Click="add_animal_Click_"/>
+                            <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="9,134.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Для сотрудни"/><Run Text="ка"/></TextBlock>
+                            <TextBox x:Name="adding_name2" HorizontalAlignment="Left" Height="23" Margin="15,230.667,0,-11" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_surname2" HorizontalAlignment="Left" Height="23" Margin="156,230.667,0,-11" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_id2" HorizontalAlignment="Left" Height="23" Margin="13,177.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_animal2" HorizontalAlignment="Left" Height="23" Margin="298,227.667,0,-8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="adding_workinghours2" HorizontalAlignment="Left" Height="23" Margin="150,178.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <Button x:Name="add_employee" Content="Обновить" HorizontalAlignment="Left" Margin="424,175.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59" Click="add_employee_Click"/>
+                            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="13,82.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="в"/><Run Text="едите "/><Run Text="вид"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="148,30.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="ведите набор пищи"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="287,31.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="ведите время кормления"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="23,33.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="ведите id"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Margin="153,81.667,0,0" Grid.Row="1"><Run Text="В"/><Run Text="ведите секцию"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="292,85.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Width="127"><Run Text="В"/><Run Text="ведите"/><Run Text=" "/><Run Text="id ра"/><Run Text="б"/><Run Text="отника"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="43,211.667,0,0" TextWrapping="Wrap" Text="Введите имя:" VerticalAlignment="Top" Grid.Row="1"/>
+                            <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="145,159.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="Введите рабочие часы:"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="293,204.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Width="126" Height="21"><Run Text="Введите id животн"/><Run Text="ого"/><Run Text=":"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="157,211.667,0,0" TextWrapping="Wrap" Text="Введите фамилию:" VerticalAlignment="Top" Grid.Row="1"/>
+                            <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="14,155.667,0,0" Grid.Row="1"><Run Text="Введите id:"/><LineBreak/><Run/></TextBlock>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -92,22 +103,32 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="241.333"/>
                             </Grid.RowDefinitions>
-                            <TextBox x:Name="forspecies2" HorizontalAlignment="Left" Height="23" Margin="3,36,0,0" TextWrapping="Wrap" Text="введите вид" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+                            <TextBox x:Name="changing_species1" HorizontalAlignment="Left" Height="23" Margin="3,101.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
                             <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="8,6.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Для животного" VerticalAlignment="Top"/>
-                            <TextBox x:Name="forid2" HorizontalAlignment="Left" Height="23" Margin="3,67.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите айди" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="forfoodset2" HorizontalAlignment="Left" Height="23" Margin="141,34.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите набор пищи" VerticalAlignment="Top" Width="131"/>
-                            <TextBox x:Name="te2" HorizontalAlignment="Left" Height="23" Margin="143,65.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="введите секцию" VerticalAlignment="Top" Width="128"/>
-                            <TextBox x:Name="textBox15" HorizontalAlignment="Left" Height="23" Margin="290,35.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="textBox16" HorizontalAlignment="Left" Height="23" Margin="291,64.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <Button x:Name="edit_animal" Content="Обновить" HorizontalAlignment="Left" Margin="423,35.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="51"/>
-                            <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="7,109.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Для сотрудни"/><Run Text="ка"/></TextBlock>
-                            <TextBox x:Name="textBox17" HorizontalAlignment="Left" Height="23" Margin="3,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="textBox18" HorizontalAlignment="Left" Height="23" Margin="5,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="textBox19" HorizontalAlignment="Left" Height="23" Margin="145,173.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="textBox20" HorizontalAlignment="Left" Height="23" Margin="290,135.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <TextBox x:Name="textBox21" HorizontalAlignment="Left" Height="23" Margin="143,137.667,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                            <Button x:Name="edit_employee" Content="Обновить" HorizontalAlignment="Left" Margin="424,133.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59"/>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="-1,205.667,0,-12" Grid.Row="1" VerticalAlignment="Top" Width="513"/>
+                            <TextBox x:Name="writing_id1" HorizontalAlignment="Left" Height="23" Margin="8,45.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_foodset1" HorizontalAlignment="Left" Height="23" Margin="144,48.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"/>
+                            <TextBox x:Name="changing_section1" HorizontalAlignment="Left" Height="23" Margin="144,99.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
+                            <TextBox x:Name="changing_timeforfeeding1" HorizontalAlignment="Left" Height="23" Margin="292,49.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_worker1" HorizontalAlignment="Left" Height="23" Margin="291,98.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <Button x:Name="edit_animal" Content="Обновить" HorizontalAlignment="Left" Margin="422,46.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Height="71" Click="edit_animal_Click"/>
+                            <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="4,132.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Для сотрудни"/><Run Text="ка"/></TextBlock>
+                            <TextBox x:Name="writing_id2" HorizontalAlignment="Left" Height="23" Margin="2,179.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_name2" HorizontalAlignment="Left" Height="23" Margin="2,231.667,0,-12" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_surname2" HorizontalAlignment="Left" Height="23" Margin="141,229.667,0,-10" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_animal2" HorizontalAlignment="Left" Height="23" Margin="290,227.667,0,-8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="changing_workinghours2" HorizontalAlignment="Left" Height="23" Margin="144,177.667,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <Button x:Name="edit_employee" Content="Обновить" HorizontalAlignment="Left" Margin="422,185.667,0,-2" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="59"/>
+                            <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="19,78.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="в"/><Run Text="едите "/><Run Text="вид"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="148,30.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="ведите набор пищи"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy12" HorizontalAlignment="Left" Margin="272,30.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="0.401,4.065"><Run Text="В"/><Run Text="ведите время кормления"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy13" HorizontalAlignment="Left" Margin="21,27.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"><Run Text="В"/><Run Text="ведите id"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy14" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Margin="153,81.667,0,0" Grid.Row="1"><Run Text="В"/><Run Text="ведите секцию"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy15" HorizontalAlignment="Left" Margin="292,85.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Width="127"><Run Text="В"/><Run Text="ведите"/><Run Text=" "/><Run Text="id ра"/><Run Text="б"/><Run Text="отника"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy16" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="14,155.667,0,0" Grid.Row="1" Width="97" Height="21"><Run Text="Введите id:"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy17" HorizontalAlignment="Left" Margin="136,155.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Height="18"><Run Text="Введите рабочие часы:"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy18" HorizontalAlignment="Left" Margin="17,208.667,0,0" TextWrapping="Wrap" Text="Введите имя:" VerticalAlignment="Top" Grid.Row="1"/>
+                            <TextBlock x:Name="textBlock_Copy19" HorizontalAlignment="Left" Margin="145,207.667,0,0" TextWrapping="Wrap" Text="Введите фамилию:" VerticalAlignment="Top" Grid.Row="1"/>
+                            <TextBlock x:Name="textBlock_Copy20" HorizontalAlignment="Left" Margin="283,200.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Width="126" Height="21"><Run Text="Введите id животн"/><Run Text="ого"/><Run Text=":"/><LineBreak/><Run/></TextBlock>
                         </Grid>
                     </Grid>
                 </TabItem>
