@@ -1,0 +1,18 @@
+﻿<Page x:Class="zoooo.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:zoooo"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="LoginPage">
+
+    <Grid>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="215" Margin="26,41,0,0"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="32,89,0,0" VerticalAlignment="Top" Width="208"/>
+        <Button x:Name="buttonLogin" Content="Button" HorizontalAlignment="Left" Margin="103,136,0,0" VerticalAlignment="Top" Width="75" Click="buttonLogin_Click_1"/>
+        <Button x:Name="buttonGuestLogin" Content="Зайти как гость" HorizontalAlignment="Left" Margin="63,247,0,0" VerticalAlignment="Top" Width="174" Click="buttonGuestLogin_Click"/>
+
+    </Grid>
+</Page>
