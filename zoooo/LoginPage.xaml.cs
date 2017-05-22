@@ -21,10 +21,14 @@ namespace zoooo
     /// Логика взаимодействия для loginPage.xaml
     /// </summary>
     public partial class LoginPage : Page
+
+
+
     {
         public LoginPage()
         {
             InitializeComponent();
+
         }
         private string CalculateHash(string password)
         {
@@ -34,12 +38,31 @@ namespace zoooo
         }
         private void buttonLogin_Click_1(object sender, RoutedEventArgs e)
         {
-            var hash = CalculateHash("zoo123");
+            var hash = CalculateHash("1");
+            if (string.IsNullOrWhiteSpace(textBoxLogin.Text) || string.IsNullOrWhiteSpace(passwordBox.Password))
+            {
+                MessageBox.Show("Введите данные.", "ОШИБКА");
+            }
 
-            if (textBoxLogin.Text == "administrator" && CalculateHash(passwordBox.Password) == hash)
-                NavigationService.Navigate(Pages.MainPage);
+            else if (textBoxLogin.Text == "1")
+            {
+                if (CalculateHash(passwordBox.Password) == hash)
+                {
+                    NavigationService.Navigate(Pages.MainPage);
+                }
+                else
+                {
+                    MessageBox.Show("Неверный пароль.", "ОШИБКА");
+                    passwordBox.Clear();
+                }
+            }
             else
-                MessageBox.Show("Введите корректные данные.", "ОШИБКА");
+            {
+                MessageBox.Show("Неверный логин.", "ОШИБКА");
+                textBoxLogin.Clear();
+            }
+
+
         }
 
         private void buttonGuestLogin_Click(object sender, RoutedEventArgs e)
@@ -47,5 +70,21 @@ namespace zoooo
             NavigationService.Navigate(Pages.GuestPage);
 
         }
+
+        private void textBoxLogin_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxLogin.Text = "";
+        }
+
+        private void textBoxLogin_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxLogin.Text))
+            {
+                textBoxLogin.Text = "Введите логин";
+
+            }
+
+        }
+
     }
 }

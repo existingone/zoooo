@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace zoooo
 {
@@ -39,6 +40,7 @@ namespace zoooo
             using (FileStream fse = new FileStream("employees.xml", FileMode.Create))
             {
                 XmlSerializer xmle = new XmlSerializer(typeof(List<Employee>));
+
                 xmle.Serialize(fse, employees);
             }
 
@@ -48,22 +50,28 @@ namespace zoooo
 
         private void LoadingInfoAboutAnimals()
         {
-            using (FileStream fsa = new FileStream("animals.xml", FileMode.Open))
+            if (File.Exists("animals.xml"))
             {
-                XmlSerializer xmla = new XmlSerializer(typeof(List<Animal>));
-                animals = (List<Animal>)xmla.Deserialize(fsa);
+                using (FileStream fsa = new FileStream("animals.xml", FileMode.Open))
+                {
+                    XmlSerializer xmla = new XmlSerializer(typeof(List<Animal>));
+                    animals = (List<Animal>)xmla.Deserialize(fsa);
+                }
             }
 
             Logging.Log("Выполнена десериализация списка животных");
         }
         private void LoadingInfoAboutEmployees()
         {
-            using (FileStream fse = new FileStream("employees.xml", FileMode.Open))
+            if (File.Exists("employees.xml"))
             {
-                XmlSerializer xmle = new XmlSerializer(typeof(List<Employee>));
-                employees = (List<Employee>)xmle.Deserialize(fse);
-            }
 
+                using (FileStream fse = new FileStream("employees.xml", FileMode.Open))
+                {
+                    XmlSerializer xmle = new XmlSerializer(typeof(List<Employee>));
+                    employees = (List<Employee>)xmle.Deserialize(fse);
+                }
+            }
 
             Logging.Log("Выполнена десериализация списка работников");
         }
@@ -101,8 +109,8 @@ namespace zoooo
             InitializeComponent();
             Logging.Log("Программа запущена");
             LoadingInfoAboutAnimals();
-            updatingInfoAboutAnimals();
             LoadingInfoAboutEmployees();
+            updatingInfoAboutAnimals();
             updatingInfoAboutEmployees();
         }
 
@@ -111,6 +119,7 @@ namespace zoooo
         /// </summary>
         private void add_animal_Click_(object sender, RoutedEventArgs e)
         {
+            int number;
             if (string.IsNullOrWhiteSpace(adding_id1.Text))
             {
                 MessageBox.Show("Введите id.", "ОШИБКА");
@@ -126,6 +135,13 @@ namespace zoooo
                 MessageBox.Show("Введите id работника.", "ОШИБКА");
                 return;
             }
+            else if (!int.TryParse(adding_worker1.Text, out number) || adding_worker1.Text.Length != 6)
+            {
+                MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
+                adding_worker1.Clear();
+            }
+
+
             if (string.IsNullOrWhiteSpace(adding_section1.Text))
             {
                 MessageBox.Show("Введите секцию.", "ОШИБКА");
@@ -142,20 +158,23 @@ namespace zoooo
                 MessageBox.Show("Введите вид.", "ОШИБКА");
                 return;
             }
-            List<Employee> linked_employees = new List<Employee>();
-            foreach (var worker in employees)
+            else if (employees.Count !=0)
             {
-
-                if (adding_worker1.Text == worker.Id)
+                List<Employee> linked_employees = new List<Employee>();
+                foreach (var worker in employees)
                 {
-                    linked_employees.Add(worker);
-                    break;
+
+                    if (adding_worker1.Text == worker.Id)
+                    {
+                        linked_employees.Add(worker);
+                        break;
+                    }
                 }
-            }
-            if (linked_employees.Count == 0)
-            {
-                MessageBox.Show("Работника с таким айди не существует.", "ОШИБКА");
-                adding_worker1.Clear();
+                if (linked_employees.Count == 0)
+                {
+                    MessageBox.Show("Работника с таким айди не существует.", "ОШИБКА");
+                    adding_worker1.Clear();
+                }
             }
             if (string.IsNullOrWhiteSpace(adding_worker1.Text))
             {
@@ -194,11 +213,18 @@ namespace zoooo
 
         private void add_employee_Click(object sender, RoutedEventArgs e)
         {
+            int number;
             if (string.IsNullOrWhiteSpace(adding_id2.Text))
             {
                 MessageBox.Show("Введите id.", "ОШИБКА");
                 return;
             }
+            else if (!int.TryParse(adding_id2.Text, out number) || adding_id2.Text.Length != 6)
+            {
+                MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
+                adding_id2.Clear();
+            }
+
             if (string.IsNullOrWhiteSpace(adding_name2.Text))
             {
                 MessageBox.Show("Введите имя.", "ОШИБКА");
@@ -214,25 +240,35 @@ namespace zoooo
                 MessageBox.Show("Введите время работы.", "ОШИБКА");
                 return;
             }
+            List<Animal> linked_animals = new List<Animal>();
             if (string.IsNullOrWhiteSpace(adding_animal2.Text))
             {
                 MessageBox.Show("Введите id животного.", "ОШИБКА");
                 return;
             }
-            List<Animal> linked_animals = new List<Animal>();
-            foreach (var animal in animals)
-            {
-
-                if (adding_animal2.Text == animal.Id)
+            else    if (!int.TryParse(adding_animal2.Text, out number) || adding_animal2.Text.Length != 6)
                 {
-                    linked_animals.Add(animal);
-                    break;
+                    MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
+                    adding_animal2.Clear();
                 }
-            }
-            if (linked_animals.Count == 0)
+
+
+             if (animals.Count != 0)
             {
-                MessageBox.Show("Животного с таким айди не существует.", "ОШИБКА");
-                adding_animal2.Clear();
+                    foreach (var animal in animals)
+                    {
+
+                        if (adding_animal2.Text == animal.Id)
+                        {
+                            linked_animals.Add(animal);
+                            break;
+                        }
+                    }
+                    if (linked_animals.Count == 0)
+                    {
+                        MessageBox.Show("Животного с таким айди не существует.", "ОШИБКА");
+                        adding_animal2.Clear();
+                    }
             }
             if (string.IsNullOrWhiteSpace(adding_animal2.Text))
             {
@@ -271,18 +307,26 @@ namespace zoooo
         private void delete_animal_Click(object sender, RoutedEventArgs e)
         {
             int count = animals.Count;
-            foreach (var temp in animals)
+            int number;
+            if (!int.TryParse(write_animal_id.Text, out number) || write_animal_id.Text.Length != 6)
             {
-                if (write_animal_id.Text == temp.Id)
-                {
-                    Logging.Log("Удалено животное с id" + temp.Id);
-                    MessageBox.Show("Удалено");
-                    animals.Remove(temp);
-                    break;
-                }
+               MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
+               write_animal_id.Clear();
             }
-            if (count == animals.Count) { MessageBox.Show("Животного с таким id не существует.", "ОШИБКА"); }
-
+            else
+            {
+                foreach (var temp in animals)
+                {
+                    if (write_animal_id.Text == temp.Id)
+                    {
+                        Logging.Log("Удалено животное с id" + temp.Id);
+                        MessageBox.Show("Удалено");
+                        animals.Remove(temp);
+                        break;
+                    }
+                }
+                if (count == animals.Count) { MessageBox.Show("Животного с таким id не существует.", "ОШИБКА"); }
+            }
             updatingInfoAboutAnimals();
             UpdatingAnimals();
         }
@@ -290,17 +334,25 @@ namespace zoooo
         private void delete_employee_Click(object sender, RoutedEventArgs e)
         {
             int count = employees.Count;
-            foreach (var temp in employees)
+            int number;
+            if (!int.TryParse(write_employee_id.Text, out number) || write_employee_id.Text.Length != 6)
             {
-                if (write_employee_id.Text == temp.Id)
-                {
-                    Logging.Log("Удален работник с id" + temp.Id);
-                    MessageBox.Show("Удалено");
-                    employees.Remove(temp);
-                    break;
-                }
+                MessageBox.Show("Поле пусто.", "ОШИБКА");
+                write_employee_id.Clear();
             }
-            if (count == employees.Count) { MessageBox.Show("Работника с таким id не существует.", "ОШИБКА"); }
+            {
+                foreach (var temp in employees)
+                {
+                    if (write_employee_id.Text == temp.Id)
+                    {
+                        Logging.Log("Удален работник с id" + temp.Id);
+                        MessageBox.Show("Удалено");
+                        employees.Remove(temp);
+                        break;
+                    }
+                }
+                if (count == employees.Count) { MessageBox.Show("Работника с таким id не существует.", "ОШИБКА"); }
+            }
             updatingInfoAboutEmployees();
             UpdatingEmployees();
         }
@@ -308,71 +360,143 @@ namespace zoooo
         private void find_animal_Click(object sender, RoutedEventArgs e)
         {
             List<Animal> found_animals = new List<Animal>();
-            foreach (var animal in animals)
+            int number;
+            if (!int.TryParse(write_animal_id.Text, out number) || write_animal_id.Text.Length != 6)
             {
-                if (write_animal_id.Text == animal.Id)
-                {
-                    MessageBox.Show("-Вид: " + animal.Species + "-Секция: " + animal.Section + "-Время кормления: " + animal.Timeforfeeding + "-Id работника: " + animal.Worker + "-Набор пищи: " + animal.Foodset);
-                    found_animals.Add(animal);
-                    Logging.Log("Выполнен поиск животного с id" + animal.Id);
-                    break;
-                }
+                MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
+                write_animal_id.Clear();
 
             }
-            if (found_animals.Count == 0)
+            else
             {
-                MessageBox.Show("Животное с таким айди не существует.", "ОШИБКА");
-                write_animal_id.Clear();
-            }
+                foreach (var animal in animals)
+                    {
+                        if (int.Parse(write_animal_id.Text) < 100000)
+                        {
+                            if (write_animal_id.Text == animal.Id)
+                            {
+                                found_animals.Add(animal);
+                                Logging.Log("Выполнен поиск животного с id" + animal.Id + ".");
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (write_animal_id.Text == animal.Worker)
+                            {
+                                found_animals.Add(animal);
+                                Logging.Log("Выполнен поиск животных, обслуживаемых работником с id" + animal.Worker + ".");
+                                break;
+                            }
+                        }
+
+                    }
+                    if (found_animals.Count == 0)
+                    {
+                        MessageBox.Show("Такого айди не существует.", "ОШИБКА");
+                        write_animal_id.Clear();
+                    }
+                    else
+                    {
+                        listBoxforanimals.ItemsSource = null;
+                        listBoxforanimals.ItemsSource = found_animals;
+                    }
+                }
         }
+
 
         private void find_employee_Click(object sender, RoutedEventArgs e)
         {
+
             List<Employee> found_employees = new List<Employee>();
-            foreach (var employee in employees)
+            int number;
+            if (!int.TryParse(write_employee_id.Text, out number) || write_employee_id.Text.Length != 6)
             {
-                if (write_employee_id.Text == employee.Id)
-                {
-                    found_employees.Add(employee);
-
-                    Logging.Log("Выполнен поиск работника с id" + employee.Id);
-                    break;
-                }
-
-            }
-            if (found_employees.Count == 0)
-            {
-                MessageBox.Show("Работник с таким айди не существует.", "ОШИБКА");
+                MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
                 write_employee_id.Clear();
             }
             else
             {
-                listBoxforemployees.ItemsSource = null;
-                listBoxforemployees.ItemsSource = found_employees;
+                foreach (var employee in employees)
+                {
+
+                    if (int.Parse(write_employee_id.Text) >= 100000)
+                    {
+                        if (write_employee_id.Text == employee.Id)
+                        {
+                            found_employees.Add(employee);
+
+                            Logging.Log("Выполнен поиск работника с id" + employee.Id + ".");
+                            break;
+                        }
+                    }
+                    else if (write_employee_id.Text == employee.Animal)
+                    {
+                        found_employees.Add(employee);
+
+                        Logging.Log("Выполнен поиск работников, ответственных за животное с id" + employee.Animal + ".");
+                        break;
+                    }
+
+                }
+                if (found_employees.Count == 0)
+                {
+                    MessageBox.Show("Такого айди не существует.", "ОШИБКА");
+                    write_employee_id.Clear();
+                }
+                else
+                {
+                    listBoxforemployees.ItemsSource = null;
+                    listBoxforemployees.ItemsSource = found_employees;
+                }
             }
-
-            //foreach (var employee in employees)
-            //{
-            //    if (write_employee_id.Text == employee.Animal)
-            //    {
-            //        found_employees.Add(employee);
-
-            //        Logging.Log("Выполнен поиск работников, ответственных за животное с id" + employee.Animal);
-            //    }
-
-            //}
-            //if (found_employees.Count == 0)
-            //{
-            //    MessageBox.Show("Животное с таким айди не существует.", "ОШИБКА");
-            //    write_employee_id.Clear();
-            //}
-            //else
-            //{
-            //    listBoxforemployees.ItemsSource = null;
-            //    listBoxforemployees.ItemsSource = found_employees;
-            //} сделай айди для работникво начинающимся с 1 и проврять через парс айди для проверок
-
         }
+
+        //List<Employee> found_employees = new List<Employee>();
+        //foreach (var employee in employees)
+        //{
+        //    if (write_employee_id.Text == employee.Id)
+        //    {
+        //        found_employees.Add(employee);
+
+        //        Logging.Log("Выполнен поиск работника с id" + employee.Id);
+        //        break;
+        //    }
+
+        //}
+        //if (found_employees.Count == 0)
+        //{
+        //    MessageBox.Show("Работник с таким айди не существует.", "ОШИБКА");
+        //    write_employee_id.Clear();
+        //}
+        //else
+        //{
+        //    listBoxforemployees.ItemsSource = null;
+        //    listBoxforemployees.ItemsSource = found_employees;
+        //}
+
+        //foreach (var employee in employees)
+        //{
+        //    if (write_employee_id.Text == employee.Animal)
+        //    {
+        //        found_employees.Add(employee);
+
+        //        Logging.Log("Выполнен поиск работников, ответственных за животное с id" + employee.Animal);
+        //    }
+
+        //}
+        //if (found_employees.Count == 0)
+        //{
+        //    MessageBox.Show("Животное с таким айди не существует.", "ОШИБКА");
+        //    write_employee_id.Clear();
+        //}
+        //else
+        //{
+        //    listBoxforemployees.ItemsSource = null;
+        //    listBoxforemployees.ItemsSource = found_employees;
+        //} сделай айди для работникво начинающимся с 1 и проврять через парс айди для проверок
+
+
 
 
 
@@ -544,44 +668,32 @@ namespace zoooo
             UpdatingEmployees();
             updatingInfoAboutEmployees();
         }
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { }
-        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         private void update_animal_Click(object sender, RoutedEventArgs e)
         {
             updatingInfoAboutAnimals();
-        }
-        private void listBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        private void tabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        private void tabControl_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-        private void button8_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void forspecies1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void update_employee_Click(object sender, RoutedEventArgs e)
         {
             updatingInfoAboutEmployees();
+        }
+
+        private void buttonGoBack1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(Pages.LoginPage);
+        }
+
+        private void write_employee_id_GotFocus(object sender, RoutedEventArgs e)
+        {
+            write_employee_id.Text = "";
+        }
+
+        private void write_employee_id_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(write_employee_id.Text))
+            {
+                write_employee_id.Text = "Введите id";
+            }
         }
     }
 

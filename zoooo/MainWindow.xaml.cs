@@ -26,7 +26,7 @@ namespace zoooo
         public MainWindow()
         {
             InitializeComponent();
-            frameMain.Navigate(new LoginPage());
+            frameMain.Navigate(new GuestPage());
 
         }
 

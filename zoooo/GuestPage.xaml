@@ -5,32 +5,40 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:zoooo"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="450" d:DesignWidth="400"
       Title="GuestPage">
 
-    <Grid>
+    <Grid Margin="0"  >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+
         </Grid.RowDefinitions>
-        <ListBox x:Name="listBoxAnimals" HorizontalAlignment="Center" Height="139" Margin="0" Width="210" DisplayMemberPath="postinganimal" Grid.RowSpan="4"/>
-        <ListBox x:Name="listBoxEmployees" HorizontalAlignment="Center" Height="139" Margin="0"  Width="210" DisplayMemberPath="postingemployee" Grid.Row="4" Grid.RowSpan="4"/>
-        <Button x:Name="buttonFindAnimal" Content="Button" HorizontalAlignment="Center" Margin="2"  Width="60" Click="buttonFindAnimal_Click" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="buttonFindEmployee" Content="Button" HorizontalAlignment="Center" Margin="2"  Width="60" Click="buttonFindEmployee_Click" Grid.Row="5" Grid.Column="1"/>
-        <TextBox x:Name="textBoxAnimal" HorizontalAlignment="Center" Height="23" Margin="2" TextWrapping="Wrap" Text="" Width="60" Grid.Column="1"/>
-        <TextBox x:Name="textBoxEmployee" HorizontalAlignment="Center" Height="23" Margin="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button x:Name="buttonResetAnimal" Content="Button" HorizontalAlignment="Center" Margin="2" Width="60" Click="buttonResetAnimal_Click" Grid.Row="3" Grid.Column="1"/>
-        <Button x:Name="buttonResetEmployee" Content="Button" HorizontalAlignment="Center" Margin="2"  Width="60" RenderTransformOrigin="0.273,0.624" Click="buttonResetEmployee_Click" Grid.Row="7" Grid.Column="1"/>
+        <ListBox x:Name="listBoxAnimals" Margin="2" DisplayMemberPath="postinganimal" Grid.RowSpan="4" Grid.Row="1" Grid.Column="1"/>
+        <ListBox x:Name="listBoxEmployees" Margin="2"  DisplayMemberPath="postingemployee" Grid.Row="6" Grid.RowSpan="4" Grid.Column="1"/>
+        <Button x:Name="buttonFindAnimal" Content="Найти" Margin="2" Click="buttonFindAnimal_Click" Grid.Row="2" Grid.Column="2" FontSize="11"/>
+        <Button x:Name="buttonFindEmployee" Content="Найти" Margin="2"  Click="buttonFindEmployee_Click" Grid.Row="7" Grid.Column="2" FontSize="11"/>
+        <TextBox x:Name="textBoxAnimal"  Margin="2" TextWrapping="Wrap" Text="Введите id"  Grid.Column="2" Grid.Row="1" GotFocus="textBoxAnimal_GotFocus" LostFocus="textBoxAnimal_LostFocus"/>
+        <TextBox x:Name="textBoxEmployee"  Margin="2" TextWrapping="WrapWithOverflow" Text="Введите id"  Grid.Row="6" Grid.Column="2" GotFocus="textBoxEmployee_GotFocus" LostFocus="textBoxEmployee_LostFocus" TextAlignment="Justify"/>
+        <Button x:Name="buttonResetAnimal" Content="Сбросить" Margin="2" Click="buttonResetAnimal_Click" Grid.Row="4" Grid.Column="2" FontSize="11"/>
+        <Button x:Name="buttonResetEmployee" Content="Сбросить" Margin="2" Click="buttonResetEmployee_Click" Grid.Row="9" Grid.Column="2" FontSize="11"/>
+        <Button x:Name="buttonGoLogin" Content="Завершить сеанс" Margin="68,2,68,2" Grid.Row="10" Grid.Column="1" Click="buttonGoLogin_Click" FontSize="11"/>
 
     </Grid>
 </Page>

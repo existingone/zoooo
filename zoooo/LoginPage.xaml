@@ -5,14 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:zoooo"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="450" d:DesignWidth="400"
       Title="LoginPage">
 
     <Grid>
-        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="215" Margin="26,41,0,0"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="32,89,0,0" VerticalAlignment="Top" Width="208"/>
-        <Button x:Name="buttonLogin" Content="Button" HorizontalAlignment="Left" Margin="103,136,0,0" VerticalAlignment="Top" Width="75" Click="buttonLogin_Click_1"/>
-        <Button x:Name="buttonGuestLogin" Content="Зайти как гость" HorizontalAlignment="Left" Margin="63,247,0,0" VerticalAlignment="Top" Width="174" Click="buttonGuestLogin_Click"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="textBoxLogin" TextWrapping="Wrap" Margin="2" Grid.Row="2" Grid.Column="1" GotFocus="textBoxLogin_GotFocus" LostFocus="textBoxLogin_LostFocus"/>
+        <PasswordBox x:Name="passwordBox" Margin="2" Grid.Column="1" Grid.Row="4" />
+        <Button x:Name="buttonLogin" Content="Зайти как администратор" Margin="2"  Click="buttonLogin_Click_1" Grid.Column="1" Grid.Row="5"/>
+        <Button x:Name="buttonGuestLogin" Content="Зайти как гость" Margin="2" Click="buttonGuestLogin_Click" Grid.Column="1" Grid.Row="7"/>
+        <TextBlock x:Name="textBlock" Grid.Column="1" Margin="2" Grid.Row="1" TextWrapping="Wrap" Text="Введите логин:"/>
+        <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="2" Grid.Row="3" TextWrapping="Wrap" Text="Введите пароль:" TextOptions.TextHintingMode="Animated"/>
     </Grid>
 </Page>
