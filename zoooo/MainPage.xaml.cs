@@ -128,14 +128,16 @@ namespace zoooo
         private void add_animal_Click_(object sender, RoutedEventArgs e)
         {
             int number;
+            float tempFloat;
             if (string.IsNullOrWhiteSpace(adding_id1.Text))
             {
                 MessageBox.Show("Введите id.", "ОШИБКА");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(adding_timeforfeeding1.Text))
+            if (string.IsNullOrWhiteSpace(adding_timeforfeeding1.Text) || !float.TryParse(adding_timeforfeeding1.Text, out tempFloat) || float.Parse(adding_timeforfeeding1.Text) < 25 || float.Parse(adding_timeforfeeding1.Text) > 0)
             {
-                MessageBox.Show("Введите время кормления.", "ОШИБКА");
+                MessageBox.Show("Введите время кормления от 0.00 до 24.00.", "ОШИБКА");
+                adding_timeforfeeding1.Clear();
                 return;
             }
             if (string.IsNullOrWhiteSpace(adding_worker1.Text))
@@ -245,7 +247,7 @@ namespace zoooo
             }
             if (string.IsNullOrWhiteSpace(adding_workinghours2.Text))
             {
-                MessageBox.Show("Введите время работы.", "ОШИБКА");
+                MessageBox.Show("Введите время работы в формате 'число-число'.", "ОШИБКА");
                 return;
             }
             List<Animal> linked_animals = new List<Animal>();
@@ -501,9 +503,11 @@ namespace zoooo
                 if (writing_id1.Text == temp.Id)
                 {
                     edited_animals.Add(temp);
-                    if (string.IsNullOrWhiteSpace(changing_timeforfeeding1.Text))
+                    float tempFloat;
+                    if (string.IsNullOrWhiteSpace(changing_timeforfeeding1.Text) || !float.TryParse(changing_timeforfeeding1.Text, out tempFloat) || float.Parse(changing_timeforfeeding1.Text) < 25 || float.Parse(changing_timeforfeeding1.Text) > 0)
                     {
-                        MessageBox.Show("Введите время кормления.", "ОШИБКА");
+                        MessageBox.Show("Введите время кормления от 0.00 до 24.00.", "ОШИБКА");
+                        changing_timeforfeeding1.Clear();
                         return;
                     }
                     if (string.IsNullOrWhiteSpace(changing_worker1.Text))
@@ -527,6 +531,7 @@ namespace zoooo
                         MessageBox.Show("Введите вид.", "ОШИБКА");
                         return;
                     }
+
                     List<Employee> linked_employees = new List<Employee>();
                     foreach (var worker in employees)
                     {
