@@ -26,7 +26,7 @@ namespace zoooo
         List<Animal> animals = new List<Animal>();
         List<Employee> employees = new List<Employee>();
 
-        private void UpdatingAnimals()
+     private void RecordingAnimals()
         {
             using (FileStream fsa = new FileStream("animals.xml", FileMode.Create))
             {
@@ -35,7 +35,7 @@ namespace zoooo
             }
             Logging.Log("Выполнена сериализация списка животных");
         }
-        private void UpdatingEmployees()
+        private void RecordingEmployees()
         {
             using (FileStream fse = new FileStream("employees.xml", FileMode.Create))
             {
@@ -43,8 +43,6 @@ namespace zoooo
 
                 xmle.Serialize(fse, employees);
             }
-
-
             Logging.Log("Выполнена сериализация списка работников");
         }
 
@@ -58,7 +56,6 @@ namespace zoooo
                     animals = (List<Animal>)xmla.Deserialize(fsa);
                 }
             }
-
             Logging.Log("Выполнена десериализация списка животных");
         }
         private void LoadingInfoAboutEmployees()
@@ -72,21 +69,19 @@ namespace zoooo
                     employees = (List<Employee>)xmle.Deserialize(fse);
                 }
             }
-
             Logging.Log("Выполнена десериализация списка работников");
         }
 
-        private void updatingInfoAboutAnimals()
+        private void UpdatingListboxAnimals()
         {
             listBoxforanimals.ItemsSource = null;
             listBoxforanimals.ItemsSource = animals;
 
         }
-        private void updatingInfoAboutEmployees()
+        private void UpdatingListboxEmployees()
         {
             listBoxforemployees.ItemsSource = null;
             listBoxforemployees.ItemsSource = employees;
-
         }
 
         private void textBoxFocus(object sender, RoutedEventArgs e)
@@ -100,18 +95,17 @@ namespace zoooo
             {
                 write_animal_id.Text = "Введите id";
             }
-
         }
 
 
         public MainPage()
         {
             InitializeComponent();
-            Logging.Log("Программа запущена");
+            Logging.Log("Программа запущена в режиме администратора.");
             LoadingInfoAboutAnimals();
             LoadingInfoAboutEmployees();
-            updatingInfoAboutAnimals();
-            updatingInfoAboutEmployees();
+            UpdatingListboxAnimals();
+            UpdatingListboxEmployees();
         }
 
         /// <summary>
@@ -199,9 +193,9 @@ namespace zoooo
             Animal temp = new Animal(adding_id1.Text, adding_timeforfeeding1.Text, adding_worker1.Text, adding_section1.Text, adding_foodset1.Text, adding_species1.Text);
             animals.Add(temp);
             MessageBox.Show("Животное с айди " + temp.Id + " добавлено.");
-            Logging.Log("добавлено животное с id " + temp.Id);
-            UpdatingAnimals(); //сериализация
-            updatingInfoAboutAnimals(); //листбокс
+            Logging.Log("Добавлено животное с id " + temp.Id + ".");
+            RecordingAnimals(); //сериализация
+            UpdatingListboxAnimals(); //листбокс
             adding_id1.Clear();
             adding_timeforfeeding1.Clear();
             adding_worker1.Clear();
@@ -292,10 +286,10 @@ namespace zoooo
 
             Employee temp = new Employee(adding_name2.Text, adding_surname2.Text, adding_workinghours2.Text, adding_id2.Text, adding_animal2.Text);
             employees.Add(temp);
-            MessageBox.Show(temp.Surname + "добавлен");
-            Logging.Log("добавлен сотрудник с id " + temp.Id);
-            UpdatingEmployees();
-            updatingInfoAboutEmployees();
+            MessageBox.Show(temp.Surname + " добавлен.");
+            Logging.Log("добавлен сотрудник с id " + temp.Id + ".");
+            RecordingEmployees();
+            UpdatingListboxEmployees();
             adding_id2.Clear();
             adding_name2.Clear();
             adding_surname2.Clear();
@@ -307,54 +301,86 @@ namespace zoooo
         private void delete_animal_Click(object sender, RoutedEventArgs e)
         {
             int count = animals.Count;
-            int number;
+            int number, lastIndex;
             if (!int.TryParse(write_animal_id.Text, out number) || write_animal_id.Text.Length != 6)
             {
                MessageBox.Show("Введите шестизначное число.", "ОШИБКА");
                write_animal_id.Clear();
             }
-            else
-            {
-                foreach (var temp in animals)
+            else if (count > 1)
                 {
-                    if (write_animal_id.Text == temp.Id)
+                    foreach (var temp in animals)
                     {
-                        Logging.Log("Удалено животное с id" + temp.Id);
-                        MessageBox.Show("Удалено");
-                        animals.Remove(temp);
+                        if (write_animal_id.Text == temp.Id)
+                        {
+                            Logging.Log("Удалено животное с id" + temp.Id);
+                            MessageBox.Show("Удалено");
+                            animals.Remove(temp);
+                            lastIndex = animals.Count() - 1;
+                            foreach (var employee in employees)
+                            {
+                              if (write_animal_id.Text == employee.Animal)
+                              {
+                                Random rnd = new Random();
+                                int temInt = rnd.Next(0, lastIndex);
+                                employee.Animal = animals[temInt].Id;
+                              }
+                             }
                         break;
+                        }
                     }
+                    if (count == animals.Count) { MessageBox.Show("Животного с таким id не существует.", "ОШИБКА"); }
                 }
-                if (count == animals.Count) { MessageBox.Show("Животного с таким id не существует.", "ОШИБКА"); }
+            else {
+                MessageBox.Show("В списке должно быть более одного животного.", "ОШИБКА");
             }
-            updatingInfoAboutAnimals();
-            UpdatingAnimals();
+            UpdatingListboxAnimals();
+            RecordingAnimals();
+            UpdatingListboxEmployees();
+            RecordingEmployees();
         }
 
         private void delete_employee_Click(object sender, RoutedEventArgs e)
         {
             int count = employees.Count;
-            int number;
+            int number, lastIndex;
             if (!int.TryParse(write_employee_id.Text, out number) || write_employee_id.Text.Length != 6)
             {
                 MessageBox.Show("Поле пусто.", "ОШИБКА");
                 write_employee_id.Clear();
             }
+            else if (count > 1)
             {
                 foreach (var temp in employees)
                 {
                     if (write_employee_id.Text == temp.Id)
                     {
-                        Logging.Log("Удален работник с id" + temp.Id);
-                        MessageBox.Show("Удалено");
+                        Logging.Log("Удален работник с id" + temp.Id + ".");
+                        MessageBox.Show("Удалено.");
                         employees.Remove(temp);
+                        lastIndex = employees.Count() - 1;
+                        foreach (var animal in animals)
+                        {
+                            if (write_employee_id.Text == animal.Worker)
+                            {
+                                Random rnd = new Random();
+                                int temInt = rnd.Next(0, lastIndex);
+                                animal.Worker =employees[temInt].Id;
+                            }
+                        }
+
                         break;
                     }
                 }
                 if (count == employees.Count) { MessageBox.Show("Работника с таким id не существует.", "ОШИБКА"); }
             }
-            updatingInfoAboutEmployees();
-            UpdatingEmployees();
+            else {
+                MessageBox.Show("В списке должно быть более одного работника.", "ОШИБКА");
+            }
+            UpdatingListboxAnimals();
+            RecordingAnimals();
+            UpdatingListboxEmployees();
+            RecordingEmployees();
         }
 
         private void find_animal_Click(object sender, RoutedEventArgs e)
@@ -452,59 +478,6 @@ namespace zoooo
             }
         }
 
-        //List<Employee> found_employees = new List<Employee>();
-        //foreach (var employee in employees)
-        //{
-        //    if (write_employee_id.Text == employee.Id)
-        //    {
-        //        found_employees.Add(employee);
-
-        //        Logging.Log("Выполнен поиск работника с id" + employee.Id);
-        //        break;
-        //    }
-
-        //}
-        //if (found_employees.Count == 0)
-        //{
-        //    MessageBox.Show("Работник с таким айди не существует.", "ОШИБКА");
-        //    write_employee_id.Clear();
-        //}
-        //else
-        //{
-        //    listBoxforemployees.ItemsSource = null;
-        //    listBoxforemployees.ItemsSource = found_employees;
-        //}
-
-        //foreach (var employee in employees)
-        //{
-        //    if (write_employee_id.Text == employee.Animal)
-        //    {
-        //        found_employees.Add(employee);
-
-        //        Logging.Log("Выполнен поиск работников, ответственных за животное с id" + employee.Animal);
-        //    }
-
-        //}
-        //if (found_employees.Count == 0)
-        //{
-        //    MessageBox.Show("Животное с таким айди не существует.", "ОШИБКА");
-        //    write_employee_id.Clear();
-        //}
-        //else
-        //{
-        //    listBoxforemployees.ItemsSource = null;
-        //    listBoxforemployees.ItemsSource = found_employees;
-        //} сделай айди для работникво начинающимся с 1 и проврять через парс айди для проверок
-
-
-
-
-
-
-
-
-
-
 
         private void edit_animal_Click(object sender, RoutedEventArgs e)
         {
@@ -577,7 +550,7 @@ namespace zoooo
                     animals.Remove(temp);
                     animals.Add(buffer);
 
-                    Logging.Log("Изменены характристики животного с id" + buffer.Id);
+                    Logging.Log("Изменены характристики животного с id " + buffer.Id + ".");
                     break;
                 }
             }
@@ -587,8 +560,8 @@ namespace zoooo
             }
 
 
-            UpdatingAnimals();
-            updatingInfoAboutAnimals();
+            RecordingAnimals();
+            UpdatingListboxAnimals();
 
         }
         private void edit_employee_Click(object sender, RoutedEventArgs e)
@@ -655,7 +628,7 @@ namespace zoooo
                     employees.Remove(temp);
                     employees.Add(buffer);
 
-                    Logging.Log("Изменены характристики работника с id" + buffer.Id);
+                    Logging.Log("Изменены характристики работника с id " + buffer.Id + ".");
                     break;
                 }
             }
@@ -665,22 +638,24 @@ namespace zoooo
             }
 
 
-            UpdatingEmployees();
-            updatingInfoAboutEmployees();
+            RecordingEmployees();
+            UpdatingListboxEmployees();
         }
         private void update_animal_Click(object sender, RoutedEventArgs e)
         {
-            updatingInfoAboutAnimals();
+            UpdatingListboxAnimals();
         }
 
         private void update_employee_Click(object sender, RoutedEventArgs e)
         {
-            updatingInfoAboutEmployees();
+            UpdatingListboxEmployees();
         }
 
         private void buttonGoBack1_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(Pages.LoginPage);
+            Logging.Log("Выполнен переход на страницу авторизации.");
+
         }
 
         private void write_employee_id_GotFocus(object sender, RoutedEventArgs e)

@@ -53,12 +53,14 @@ namespace zoooo
                 else
                 {
                     MessageBox.Show("Неверный пароль.", "ОШИБКА");
+                    Logging.Log("Введен неверный пароль.");
                     passwordBox.Clear();
                 }
             }
             else
             {
                 MessageBox.Show("Неверный логин.", "ОШИБКА");
+                Logging.Log("Введен неверный логин.");
                 textBoxLogin.Clear();
             }
 

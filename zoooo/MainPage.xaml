@@ -34,6 +34,7 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
+                            
                             <RowDefinition Height="8*"/>
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="2*"/>
@@ -47,7 +48,7 @@
                         </Grid.ColumnDefinitions>
                         <ListBox x:Name="listBoxforanimals" Margin="2"  DisplayMemberPath="postinganimal" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
                         <Button x:Name="find_animal" Content="Найти" Margin="2" Grid.Column="2" Click="find_animal_Click" Grid.Row="2"/>
-                        <Button x:Name="update_animal" Content="Обновить" Margin="2"  Grid.Column="2" Click="update_animal_Click" Grid.Row="5"/>
+                        <Button x:Name="update_animal" Content="Сбросить" Margin="2"  Grid.Column="2" Click="update_animal_Click" Grid.Row="5"/>
                         <Button x:Name="delete_animal" Content="Удалить" Margin="2"  Grid.Column="2" Click="delete_animal_Click" Grid.Row="3"/>
                         <TextBox x:Name="write_animal_id" Grid.Column="2" Margin="2" TextWrapping="Wrap" Text="Введите id" GotFocus="textBoxFocus" LostFocus="textBoxLostFocus" Grid.Row="1" />
                         <Button x:Name="buttonGoBack1" Content="Завершить сеанс" Grid.Column="1"  Margin="2"  Grid.Row="6" Click="buttonGoBack1_Click" />
@@ -74,7 +75,7 @@
                         <ListBox x:Name="listBoxforemployees" Margin="2" Grid.RowSpan="5" DisplayMemberPath="postingemployee" Grid.Column="1" Grid.Row="1"/>
                         <Button x:Name="find_employee" Content="Найти" Margin="2" Grid.Column="2" Grid.Row="2" Click="find_employee_Click"/>
                         <Button x:Name="delete_employee" Content="Удалить" Margin="2" Grid.Row="3" Click="delete_employee_Click" Grid.Column="2"/>
-                        <Button x:Name="update_employee" Content="Обновить" Margin="2" Grid.Column="2" Grid.Row="5" Click="update_employee_Click"/>
+                        <Button x:Name="update_employee" Content="Сбросить" Margin="2" Grid.Column="2" Grid.Row="5" Click="update_employee_Click"/>
                         <TextBox x:Name="write_employee_id" Grid.Column="2" Margin="2" TextWrapping="Wrap" Text="Введите id" Grid.Row="1" GotFocus="write_employee_id_GotFocus" LostFocus="write_employee_id_LostFocus"/>
                         <Button x:Name="buttonGoBack2" Content="Завершить сеанс" Grid.Column="1"  Margin="2"  Grid.Row="6" Click="buttonGoBack1_Click" />
                     </Grid>
