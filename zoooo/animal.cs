@@ -11,8 +11,8 @@ namespace zoooo
         private string _id;
         private string _timeforfeeding;
         private string _worker;
-        private string _section;
-        private string _foodset;
+        private string _section; // буква и цифра
+        private string _foodset; //цифра и буква
         private string _species;
 
         
@@ -112,7 +112,7 @@ namespace zoooo
         {
             get
             {
-                return $"{_id} - {_species} - {_section}- {_timeforfeeding} - {_worker}  - {_foodset}";
+                return $"{_id} - {_species} - {_timeforfeeding} - {_worker} - {_section} - {_foodset}";
             }
         }
 

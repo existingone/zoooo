@@ -50,26 +50,40 @@ namespace zoooo
         {
             if (File.Exists("animals.xml"))
             {
-                using (FileStream fsa = new FileStream("animals.xml", FileMode.Open))
+                try
                 {
-                    XmlSerializer xmla = new XmlSerializer(typeof(List<Animal>));
-                    animals = (List<Animal>)xmla.Deserialize(fsa);
+                    using (FileStream fsa = new FileStream("animals.xml", FileMode.Open))
+                    {
+                        XmlSerializer xmla = new XmlSerializer(typeof(List<Animal>));
+                        animals = (List<Animal>)xmla.Deserialize(fsa);
+                    }
+                    Logging.Log("Выполнена десериализация списка животных");
+                }
+                catch
+                {
+                    MessageBox.Show("Файлы не могут быть восстановлены.");
                 }
             }
-            Logging.Log("Выполнена десериализация списка животных");
         }
         private void LoadingInfoAboutEmployees()
         {
             if (File.Exists("employees.xml"))
             {
-
-                using (FileStream fse = new FileStream("employees.xml", FileMode.Open))
+                try
                 {
-                    XmlSerializer xmle = new XmlSerializer(typeof(List<Employee>));
-                    employees = (List<Employee>)xmle.Deserialize(fse);
+                    using (FileStream fse = new FileStream("employees.xml", FileMode.Open))
+                    {
+                        XmlSerializer xmle = new XmlSerializer(typeof(List<Employee>));
+                        employees = (List<Employee>)xmle.Deserialize(fse);
+                    }
+
+                    Logging.Log("Выполнена десериализация списка работников");
+                }
+                catch
+                {
+                    MessageBox.Show("Файлы не могут быть восстановлены.");
                 }
             }
-            Logging.Log("Выполнена десериализация списка работников");
         }
 
         private void UpdatingListboxAnimals()
@@ -248,7 +262,7 @@ namespace zoooo
 
 
              if (animals.Count != 0)
-            {
+             {
                     foreach (var animal in animals)
                     {
 
