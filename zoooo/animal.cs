@@ -108,11 +108,11 @@ namespace zoooo
         public Animal()
         { }
 
-        public string postinganimal
+        public string Postinganimal
         {
             get
             {
-                return $"{_id} - {_timeforfeeding} - {_worker} - {_section} - {_foodset} - {_species}";
+                return $"{_id} - {_species} - {_section}- {_timeforfeeding} - {_worker}  - {_foodset}";
             }
         }
 

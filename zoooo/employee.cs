@@ -93,11 +93,11 @@ namespace zoooo
         public Employee()
         { }
 
-        public string postingemployee
+        public string Postingemployee
         {
             get
             {
-                return $"{_name} - {_surname} - {_workinghours} - {_id} - {_animal}";
+                return $"{_id} - {_name} - {_surname} - {_workinghours} - {_animal}";
             }
         }
 

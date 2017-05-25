@@ -30,6 +30,10 @@ namespace zoooo
             InitializeComponent();
 
         }
+        SolidColorBrush original = new SolidColorBrush(System.Windows.Media.Color.FromRgb(221, 221, 221));
+        SolidColorBrush changed = new SolidColorBrush(System.Windows.Media.Color.FromRgb(170, 58, 58));
+
+
         private string CalculateHash(string password)
         {
             MD5 md5 = MD5.Create();
@@ -38,30 +42,41 @@ namespace zoooo
         }
         private void buttonLogin_Click_1(object sender, RoutedEventArgs e)
         {
+
             var hash = CalculateHash("1");
             if (string.IsNullOrWhiteSpace(textBoxLogin.Text) || string.IsNullOrWhiteSpace(passwordBox.Password))
             {
+                buttonLogin.Background = changed;
                 MessageBox.Show("Введите данные.", "ОШИБКА");
+                buttonLogin.Background = original;
             }
 
             else if (textBoxLogin.Text == "1")
             {
                 if (CalculateHash(passwordBox.Password) == hash)
                 {
+                    passwordBox.Clear();
+                    textBoxLogin.Clear();
                     NavigationService.Navigate(Pages.MainPage);
                 }
                 else
                 {
-                    MessageBox.Show("Неверный пароль.", "ОШИБКА");
                     Logging.Log("Введен неверный пароль.");
+                    buttonLogin.Background = changed;
+                    MessageBox.Show("Неверный пароль.", "ОШИБКА");
                     passwordBox.Clear();
+                    buttonLogin.Background = original;
+
                 }
             }
             else
             {
-                MessageBox.Show("Неверный логин.", "ОШИБКА");
                 Logging.Log("Введен неверный логин.");
+                buttonLogin.Background = changed;
+                MessageBox.Show("Неверный логин.", "ОШИБКА");
                 textBoxLogin.Clear();
+                buttonLogin.Background = original;
+
             }
 
 

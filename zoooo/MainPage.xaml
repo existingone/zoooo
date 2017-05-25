@@ -46,7 +46,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox x:Name="listBoxforanimals" Margin="2"  DisplayMemberPath="postinganimal" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
+                        <ListBox x:Name="listBoxforanimals" Margin="2"  DisplayMemberPath="Postinganimal" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
                         <Button x:Name="find_animal" Content="Найти" Margin="2" Grid.Column="2" Click="find_animal_Click" Grid.Row="2"/>
                         <Button x:Name="update_animal" Content="Сбросить" Margin="2"  Grid.Column="2" Click="update_animal_Click" Grid.Row="5"/>
                         <Button x:Name="delete_animal" Content="Удалить" Margin="2"  Grid.Column="2" Click="delete_animal_Click" Grid.Row="3"/>
@@ -72,7 +72,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox x:Name="listBoxforemployees" Margin="2" Grid.RowSpan="5" DisplayMemberPath="postingemployee" Grid.Column="1" Grid.Row="1"/>
+                        <ListBox x:Name="listBoxforemployees" Margin="2" Grid.RowSpan="5" DisplayMemberPath="Postingemployee" Grid.Column="1" Grid.Row="1"/>
                         <Button x:Name="find_employee" Content="Найти" Margin="2" Grid.Column="2" Grid.Row="2" Click="find_employee_Click"/>
                         <Button x:Name="delete_employee" Content="Удалить" Margin="2" Grid.Row="3" Click="delete_employee_Click" Grid.Column="2"/>
                         <Button x:Name="update_employee" Content="Сбросить" Margin="2" Grid.Column="2" Grid.Row="5" Click="update_employee_Click"/>
@@ -126,7 +126,7 @@
                             <Button x:Name="add_employee" Content="Обновить" Margin="2" Click="add_employee_Click" Grid.Column="4" Grid.Row="8" Grid.RowSpan="2"/>
                             <TextBlock x:Name="textBlock" Margin="2" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" Text="Введите вид:" FontSize="10"/>
                             <TextBlock x:Name="textBlock_Copy" Margin="2" TextWrapping="Wrap" Grid.Column="2" Grid.Row="2" FontSize="10"><Run Text="В"/><Run Text="ведите набор пищи"/><Run Text=":"/></TextBlock>
-                            <TextBlock x:Name="textBlock_Copy1" Margin="1.667,1,6.333,5.333" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2" FontSize="10"><Run Text="В"/><Run Text="ведите время кормления"/><Run Text=":"/></TextBlock>
+                            <TextBlock x:Name="textBlock_Copy1" Margin="2" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2" FontSize="10"><Run Text="В"/><Run Text="ведите время кормления"/><Run Text=":"/></TextBlock>
                             <TextBlock x:Name="textBlock_Copy2" Margin="2" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" FontSize="10"><Run Text="В"/><Run Text="ведите id"/><Run Text=":"/></TextBlock>
                             <TextBlock x:Name="textBlock_Copy3" TextWrapping="Wrap" Margin="2" Grid.Column="2" Grid.Row="4" FontSize="10"><Run Text="В"/><Run Text="ведите секцию"/><Run Text=":"/></TextBlock>
                             <TextBlock x:Name="textBlock_Copy4" Margin="2" TextWrapping="Wrap" Grid.Column="3" Grid.Row="4" FontSize="10"><Run Text="В"/><Run Text="ведите"/><Run Text=" "/><Run Text="id ра"/><Run Text="б"/><Run Text="отника"/><Run Text=":"/></TextBlock>
