@@ -135,7 +135,7 @@
                             <TextBlock x:Name="textBlock_Copy7" Margin="2" TextWrapping="Wrap" Grid.Column="3" Grid.Row="9"><Run FontSize="10" Text="Введите id животного:"/><LineBreak/><Run/></TextBlock>
                             <TextBlock x:Name="textBlock_Copy8" Margin="2" TextWrapping="Wrap" Text="Введите фамилию:" Grid.Column="2" Grid.Row="9" FontSize="10"/>
                             <TextBlock x:Name="textBlock_Copy9" TextWrapping="Wrap" Margin="2" Grid.Column="1" Grid.Row="7"><Run FontSize="10" Text="Введите id:"/><LineBreak/><Run/></TextBlock>
-                            <Button x:Name="buttonGoBack4" Content="Завершить сеанс" Margin="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="11"/>
+                            <Button x:Name="buttonGoBack4" Content="Завершить сеанс" Margin="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="11"  Click="buttonGoBack1_Click"/>
                         </Grid>
                     </Grid>
                 </TabItem>
